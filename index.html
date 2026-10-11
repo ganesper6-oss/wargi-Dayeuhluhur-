@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Komunitas Wargi Dayeuhluhur</title>
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>Komunitas Wargi Dayeuhluhur</title>
 <style>
 :root{--bg:#f4f7fb;--card:#fff;--tx:#14213d;--mu:#5d6b82;--b:#1d5fd6;--bd:#e3e9f2;--g:#16a34a;--o:#f59e0b;--sh:0 2px 12px rgba(20,33,61,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1626;--card:#17233b;--tx:#e8eefb;--mu:#9fb0cc;--bd:#243453;--sh:none}}
@@ -40,6 +40,56 @@ input.f,select.f,textarea.f{width:100%;border:1px solid var(--bd);background:var
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:8px;border-bottom:1px solid var(--bd);text-align:left}.tw{overflow-x:auto}
 footer{text-align:center;color:var(--mu);font-size:13px;padding:10px 14px 20px}
 @media(min-width:768px){nav.top{display:flex}.bn{display:none}.grid{grid-template-columns:repeat(4,1fr)}.hero h1{font-size:36px}.tabs{grid-template-columns:repeat(4,1fr)}main{padding-bottom:30px}#toast{bottom:24px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}}
+
+/* App-like mobile behavior */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
+}
+body { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+
+/* Floating WhatsApp community growth button */
+.wa-grow {
+  position: fixed;
+  right: 14px;
+  bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  max-width: calc(100vw - 28px);
+  padding: 11px 15px 11px 12px;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: #16a34a;
+  box-shadow: 0 5px 18px rgba(0,0,0,.22);
+  font-weight: 750;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.wa-grow:active { transform: scale(.98); }
+.wa-grow .wa-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  font-size: 23px;
+}
+@media(min-width:768px) {
+  .wa-grow { bottom: 22px; right: 22px; }
+}
+
 </style></head><body>
 <header><a href="#/" class="logo">WARGI <span>DAYEUHLUHUR</span></a>
 <nav class="top" id="tn"></nav><div class="sp"></div>
@@ -48,7 +98,14 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding:10px 14px 20px}
 <button class="ib" onclick="go('/chat')" aria-label="Pesan">💬</button>
 <button class="ib" onclick="tg()" aria-label="Tema">🌓</button></header>
 <main id="app"></main><footer><b>WARGI DAYEUHLUHUR</b><br>Platform digital untuk menghubungkan, memberdayakan, dan memajukan warga Dayeuhluhur.<br>Tentang · Kontak · Bantuan · Kebijakan Privasi · Syarat &amp; Ketentuan<br><i>Semua data di sini adalah data contoh (demo).</i></footer>
-<nav class="bn" id="bn"></nav><div id="toast"></div><div id="modal"></div>
+<nav class="bn" id="bn"></nav>
+<button class="wa-grow" type="button"
+  onclick="window.open('https://wa.me/6281330556847?text='+encodeURIComponent('Halo, saya ingin ikut bersama mengembangkan Web Komunitas Wargi Dayeuhluhur.'), '_blank', 'noopener,noreferrer')"
+  aria-label="Ayo Bersama Kembangkan Web Ini">
+  <span class="wa-icon" aria-hidden="true">☏</span>
+  <span>Ayo Bersama Kembangkan Web Ini</span>
+</button>
+<div id="toast"></div><div id="modal"></div>
 <script>
 const P=[["Keripik Pisang Dayeuhluhur",25000,"Makanan","Bu Euis",4.9,120,"🍌"],["Gula Aren Asli",18000,"Makanan","Kang Asep",4.8,210,"🍯"],["Beras Pandan Wangi 5kg",72000,"Pertanian","Pak Dadang",4.7,90,"🌾"],["Bibit Cabai Rawit",8000,"Pertanian","Teh Nining",4.6,64,"🌶"],["Batik Tulis Motif Parang",185000,"Fashion","Teh Imas",4.9,33,"👘"],["Kerudung Voal Premium",45000,"Fashion","Ceu Neneng",4.7,87,"🧕"],["Anyaman Bambu Besek",15000,"Kerajinan","Mang Ujang",4.8,150,"🧺"],["Tas Pandan Anyam",65000,"Kerajinan","Mang Ujang",4.9,41,"👜"],["Jasa Servis HP",50000,"Jasa","Kang Yayat",4.8,76,"🛠"],["Jasa Tukang Bangunan",150000,"Jasa","Kang Dede",4.6,22,"🏗"],["Kontrakan 2 Kamar",600000,"Properti","Pak Dadang",4.5,5,"🏠"],["Tanah Kebun 200m²",85000000,"Properti","Teh Rini",4.4,1,"🌳"],["Headset Bluetooth Bekas",90000,"Elektronik","Kang Yayat",4.5,12,"🎧"],["Powerbank 10000mAh",120000,"Elektronik","Kang Yayat",4.6,28,"🔋"],["Sabun Herbal Sereh",20000,"Kecantikan","Teh Rini",4.8,95,"🧼"],["Lulur Beras Alami",35000,"Kecantikan","Teh Rini",4.9,58,"🌸"],["Motor Bekas Supra X",9500000,"Kendaraan","Kang Dede",4.3,1,"🏍"],["Ban Motor Baru",210000,"Kendaraan","Kang Dede",4.7,17,"🛞"],["Opak Singkong Renyah",12000,"Makanan","Bu Euis",4.8,300,"🥔"],["Pupuk Kompos 10kg",30000,"Lainnya","Pak Dadang",4.5,44,"🌱"]];
 const U=["Bu Euis","Kang Asep","Teh Nining","Pak Dadang","Kang Yayat","Teh Imas","Ceu Neneng","Mang Ujang","Teh Rini","Kang Dede"];
@@ -150,5 +207,5 @@ function render(){const x=mk(location.hash.slice(1));$("#app").innerHTML=route()
 $("#tn").innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${x==mk(n[0])?"on":""}">${n[1]}</a>`).join("")+`<a href="#/seller" class="btn o" style="margin-left:auto;color:#1a1100">Jual Barang</a>`;
 $("#bn").innerHTML=BN.map(n=>`<a href="#${n[0]}" class="${x==mk(n[0])?"on":""}"><span>${n[1]}</span>${n[2]}</a>`).join("");
 const u=S.nt.filter(n=>!n.r).length;$("#nb").textContent=u||"";$("#nb").style.display=u?"":"none";th()}
-addEventListener("hashchange",()=>{render();scrollTo(0,0)});render();
+addEventListener("hashchange",()=>{render();window.scrollTo({top:0,left:0,behavior:"auto"})});window.addEventListener("pageshow",()=>{document.documentElement.style.zoom="1"});render();
 </script></body></html>
